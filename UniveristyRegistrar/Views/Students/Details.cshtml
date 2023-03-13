@@ -1,0 +1,44 @@
+@{
+  Layout = "_Layout";
+}
+
+@using UniversityRegistrar.Models
+@model UniversityRegistrar.Models.Student
+
+<h2>Student Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h3>
+<h3>Status: @if(Model.Completed)
+  {
+    <span>&#9989</span>
+  } @if(!Model.Completed) {
+    <span>Not Completed</span>
+  }
+
+</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This student does not have any courses yet!</p>
+}
+else
+{
+  <h4>This student has the following courses:</h4>
+  <ul>
+    @foreach (StudentCourse join in Model.JoinEntities)
+    {
+      <li>Courses: @join.Course.Title</li>
+      @using (Html.BeginForm("DeleteJoin", "Students"))
+      {
+        @Html.Hidden("joinId", @join.StudentCourseId)
+        <input type="submit" value="Delete"/>
+      }
+    }
+  </ul>
+}
+
+
+
+<p>@Html.ActionLink("Delete Student", "Delete", new { id = Model.StudentId })</p>
+<p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Add a Course", "AddCourse", new { id = Model.StudentId })</p>
