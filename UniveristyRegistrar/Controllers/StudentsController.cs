@@ -60,10 +60,13 @@ namespace UniversityRegistrar.Controllers
           .FirstOrDefault(student => student.StudentId == id);
       return View(thisStudent);
     }
-
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     public ActionResult Edit(int id)
     {
-      Student thisStudent = _db.Students.FirstOrDefault(student => student.StudentId == id);
+      Student thisStudent = _db.Students
+            .Include(student => student.JoinEntitiesStudentCourses)
+            .ThenInclude(join => join.Course)   
+            .FirstOrDefault(student => student.StudentId == id);
       return View(thisStudent);
     }
 

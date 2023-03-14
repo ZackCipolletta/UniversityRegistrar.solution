@@ -7,7 +7,7 @@
 
 <h2>Student Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h3>
+<h3>@Html.DisplayNameFor(model => model.Description):<span> </span> @Html.DisplayFor(model => model.Description)</h3>
 <h3>Status: @if(Model.Completed)
   {
     <span>&#9989</span>
@@ -28,12 +28,7 @@ else
   <ul>
     @foreach (StudentCourse join in Model.JoinEntitiesStudentCourses)
     {
-      <li>@join.Course.Title | Completed: Yes/No</li>
-      @using (Html.BeginForm("DeleteJoin", "Students"))
-      {
-        @Html.Hidden("joinId", @join.StudentCourseId)
-        <input type="submit" value="Delete"/>
-      }
+      <li>@join.Course.Title | Completed: @join.Completed</li>
     }
   </ul>
 }
