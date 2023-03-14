@@ -133,5 +133,16 @@ namespace UniversityRegistrar.Controllers
       return RedirectToAction("Index");
     }
 
+    
+    [HttpPost, ActionName("CourseCompletion")]
+    public ActionResult CourseCompletion(Boolean Completed, int Id)
+    {
+      StudentCourse thisStudent = _db.StudentCourses.FirstOrDefault(student => student.StudentCourseId == Id);
+      thisStudent.Completed = Completed;
+      _db.StudentCourses.Update(thisStudent);
+      _db.SaveChanges();
+      return RedirectToAction("Details", new {id = thisStudent.StudentId});
+    }
+
   }
 }

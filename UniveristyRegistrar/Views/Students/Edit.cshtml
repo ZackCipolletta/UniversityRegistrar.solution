@@ -20,6 +20,7 @@
     @Html.LabelFor(model => model.EnrollmentDate)<span>: </span>
     @Html.EditorFor(model => model.EnrollmentDate, new { htmlAttributes = new { @class = "form-control datepicker date-input", type = "date" } })
     <br>
+    
     <input type="submit" value="Save" />
   }
   
@@ -27,25 +28,25 @@
   <ul>
     @foreach (StudentCourse join in Model.JoinEntitiesStudentCourses)
     {
-      <li>@join.Course.Title | Completed: @join.Completed
+      <li>@join.Course.Title | 
+        @using (Html.BeginForm("CourseCompletion", "Students")) {
+          @Html.Hidden("Id", @join.StudentCourseId)
+          @Html.Label("Completed?")<span> </span>
+        @Html.CheckBox("Completed")
+      <input type="submit" value="Save"/>
+      }
+    
       @using (Html.BeginForm("DeleteJoin", "Students"))
       {
         @Html.Hidden("joinId", @join.StudentCourseId)
         <input type="submit" value="Delete"/>
       }
+      <br>
+
       </li>
     }
   </ul>
 
-  @using (Html.BeginForm())
-{
-    @Html.HiddenFor(model => model.JoinEntitiesStudentCourses)
-
-    @Html.Label("Select if Completed")
-    @Html.DropDownList("Completed")
-
-    <input type="submit" value="Save" />
-}
 
 </div>
 <p>@Html.ActionLink("Back to list", "Index")</p>
