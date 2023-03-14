@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UniversityRegistrar.Models;
 
@@ -10,9 +11,10 @@ using UniversityRegistrar.Models;
 namespace UniversityRegistrar.Migrations
 {
     [DbContext(typeof(UniversityRegistrarContext))]
-    partial class UniversityRegistrarContextModelSnapshot : ModelSnapshot
+    [Migration("20230314172215_createDepartmentsWithCoursesAndStudentsRelationships")]
+    partial class createDepartmentsWithCoursesAndStudentsRelationships
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,13 +137,13 @@ namespace UniversityRegistrar.Migrations
             modelBuilder.Entity("UniversityRegistrar.Models.CourseDepartment", b =>
                 {
                     b.HasOne("UniversityRegistrar.Models.Course", "Course")
-                        .WithMany("JoinEntitiesCourseDepartments")
+                        .WithMany()
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("UniversityRegistrar.Models.Department", "Department")
-                        .WithMany("JoinEntitiesCourseDepartments")
+                        .WithMany()
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -154,13 +156,13 @@ namespace UniversityRegistrar.Migrations
             modelBuilder.Entity("UniversityRegistrar.Models.StudentCourse", b =>
                 {
                     b.HasOne("UniversityRegistrar.Models.Course", "Course")
-                        .WithMany("JoinEntitiesStudentCourses")
+                        .WithMany("JoinEntities")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("UniversityRegistrar.Models.Student", "Student")
-                        .WithMany("JoinEntitiesStudentCourses")
+                        .WithMany("JoinEntities")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -173,13 +175,13 @@ namespace UniversityRegistrar.Migrations
             modelBuilder.Entity("UniversityRegistrar.Models.StudentDepartment", b =>
                 {
                     b.HasOne("UniversityRegistrar.Models.Department", "Department")
-                        .WithMany("JoinEntitiesStudentDepartments")
+                        .WithMany("JoinEntities")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("UniversityRegistrar.Models.Student", "Student")
-                        .WithMany("JoinEntitiesStudentDepartments")
+                        .WithMany()
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -191,23 +193,17 @@ namespace UniversityRegistrar.Migrations
 
             modelBuilder.Entity("UniversityRegistrar.Models.Course", b =>
                 {
-                    b.Navigation("JoinEntitiesCourseDepartments");
-
-                    b.Navigation("JoinEntitiesStudentCourses");
+                    b.Navigation("JoinEntities");
                 });
 
             modelBuilder.Entity("UniversityRegistrar.Models.Department", b =>
                 {
-                    b.Navigation("JoinEntitiesCourseDepartments");
-
-                    b.Navigation("JoinEntitiesStudentDepartments");
+                    b.Navigation("JoinEntities");
                 });
 
             modelBuilder.Entity("UniversityRegistrar.Models.Student", b =>
                 {
-                    b.Navigation("JoinEntitiesStudentCourses");
-
-                    b.Navigation("JoinEntitiesStudentDepartments");
+                    b.Navigation("JoinEntities");
                 });
 #pragma warning restore 612, 618
         }

@@ -4,6 +4,7 @@ namespace UniversityRegistrar.Models
   {
     public int CourseId { get; set; }
     public string Title { get; set; }
-    public List<StudentCourse> JoinEntities { get; }
+    public List<StudentCourse> JoinEntitiesStudentCourses { get; }
+    public List<CourseDepartment> JoinEntitiesCourseDepartments { get; }
   }
 }

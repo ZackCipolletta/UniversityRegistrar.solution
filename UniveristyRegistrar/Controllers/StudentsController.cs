@@ -39,15 +39,23 @@ namespace UniversityRegistrar.Controllers
     [HttpPost]
     public ActionResult Create (Student student)
     {
-      _db.Students.Add(student);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+      if ( !ModelState.IsValid)
+      {
+        ViewBag.CourseId = new SelectList(_db.Courses, "CourseID", "Title");
+        return View(student);
+      }
+      else
+      {
+        _db.Students.Add(student);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
     }
 
     public ActionResult Details(int id)
     {
       Student thisStudent = _db.Students
-          .Include(student => student.JoinEntities)
+          .Include(student => student.JoinEntitiesStudentCourses)
           .ThenInclude(join => join.Course)          
           .FirstOrDefault(student => student.StudentId == id);
       return View(thisStudent);

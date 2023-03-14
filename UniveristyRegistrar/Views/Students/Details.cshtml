@@ -18,7 +18,7 @@
 
 <p>Enrollment date: @Model.EnrollmentDate.ToShortDateString()</p>
 
-@if(@Model.JoinEntities.Count == 0)
+@if(@Model.JoinEntitiesStudentCourses.Count == 0)
 {
   <p>This student does not have any courses yet!</p>
 }
@@ -26,7 +26,7 @@ else
 {
   <h4>This student has the following courses:</h4>
   <ul>
-    @foreach (StudentCourse join in Model.JoinEntities)
+    @foreach (StudentCourse join in Model.JoinEntitiesStudentCourses)
     {
       <li>Courses: @join.Course.Title</li>
       @using (Html.BeginForm("DeleteJoin", "Students"))
