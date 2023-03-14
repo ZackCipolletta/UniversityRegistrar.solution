@@ -14,8 +14,9 @@
   } @if(!Model.Completed) {
     <span>Not Completed</span>
   }
-
 </h3>
+
+<p>Enrollment date: @Model.EnrollmentDate.ToShortDateString()</p>
 
 @if(@Model.JoinEntities.Count == 0)
 {
@@ -38,7 +39,7 @@ else
 }
 
 
-
+<p>@Html.ActionLink("Edit Student", "Edit", new { id = Model.StudentId })</p>
 <p>@Html.ActionLink("Delete Student", "Delete", new { id = Model.StudentId })</p>
 <p>@Html.ActionLink("Back to list", "Index")</p>
 <p>@Html.ActionLink("Add a Course", "AddCourse", new { id = Model.StudentId })</p>

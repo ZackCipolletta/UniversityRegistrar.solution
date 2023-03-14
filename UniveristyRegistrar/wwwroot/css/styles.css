@@ -36,7 +36,6 @@ div#footer {
 	padding: 8px;
 }
 
-div .date-input {
-  width: 50px;
-	background-color: blue;
+.date-input {
+  width: 150px;
 }

@@ -11,6 +11,8 @@
   @Html.LabelFor(model => model.Description)<span> </span>
   @Html.TextBoxFor(model => model.Description)
 
+  @Html.LabelFor(model => model.EnrollmentDate)
+  @Html.EditorFor(model => model.EnrollmentDate, new { htmlAttributes = new { @class = "form-control datepicker date-input", type = "date" } })
 
   <input type="submit" value="Add new student" class="btn btn-primary" />
 }

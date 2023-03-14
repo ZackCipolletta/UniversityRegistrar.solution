@@ -16,23 +16,23 @@ namespace UniversityRegistrar.Controllers
       _db = db;
     }
 
-    public ActionResult Index()
+    public ActionResult Index(string sortBy)
     {
       List<Student> model = _db.Students.ToList();;
-      // if (sortBy ==null)
-      // {
-      //   // model = _db.Students.Include(student => student.Category).ToList();
-      // } 
-      // else if (sortBy.Equals("date"))
-      // {
-      //   model = _db.Students.OrderBy(student => student.DueDate).Include(student => student.Category).ToList();
-      // }
+      if (sortBy ==null)
+      {
+        model = _db.Students.ToList();
+      } 
+      else if (sortBy.Equals("date"))
+      {
+        model = _db.Students.OrderBy(student => student.EnrollmentDate).ToList();
+      }
       return View(model);
     }
 
     public ActionResult Create()
     {
-      // ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
+      ViewBag.CategoryId = new SelectList(_db.Courses, "CourseId", "Name");
       return View();
     }
 

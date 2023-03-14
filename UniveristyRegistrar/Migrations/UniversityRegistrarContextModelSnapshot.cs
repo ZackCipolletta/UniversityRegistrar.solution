@@ -45,7 +45,7 @@ namespace UniversityRegistrar.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("DueDate")
+                    b.Property<DateTime>("EnrollmentDate")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("StudentId");
