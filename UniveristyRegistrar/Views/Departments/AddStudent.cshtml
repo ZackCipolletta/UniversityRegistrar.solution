@@ -4,16 +4,16 @@
 
 @model UniversityRegistrar.Models.Department
 
-<h2>Add an course</h2>
+<h2>Add an student</h2>
 
-<h4>Add an course to this department: @Html.DisplayFor(model => model.Name)</h4>
+<h4>Add an student to this department: @Html.DisplayFor(model => model.Name)</h4>
 
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.DepartmentId)
 
-    @Html.Label("Select course")
-    @Html.DropDownList("CourseId")
+    @Html.Label("Select student")
+    @Html.DropDownList("StudentId")
 
     <input type="submit" value="Save" />
 }

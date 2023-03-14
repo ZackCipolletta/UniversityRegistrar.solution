@@ -36,6 +36,12 @@ div#footer {
 	padding: 8px;
 }
 
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+
 .date-input {
   width: 150px;
 }

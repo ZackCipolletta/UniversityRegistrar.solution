@@ -7,7 +7,7 @@ namespace UniversityRegistrar.Models
   {
     [Required(ErrorMessage = "Department name cannot be empty. Please enter a name.")]
     public string Name { get; set; }
-    public int DepartmentID { get; set; }
+    public int DepartmentId { get; set; }
     public List<StudentDepartment> JoinEntitiesStudentDepartments { get; }
     public List<CourseDepartment> JoinEntitiesCourseDepartments { get; }
   }

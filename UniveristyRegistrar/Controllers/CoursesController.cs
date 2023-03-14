@@ -26,6 +26,8 @@ namespace UniversityRegistrar.Controllers
       Course thisCourse = _db.Courses
           .Include(course => course.JoinEntitiesStudentCourses)
           .ThenInclude(join => join.Student)
+          .Include(course => course.JoinEntitiesCourseDepartments)
+          .ThenInclude(join => join.Department)
           .FirstOrDefault(course => course.CourseId == id);
       return View(thisCourse);
     }
