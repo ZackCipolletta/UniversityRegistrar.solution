@@ -24,20 +24,29 @@ else
   </ul>
 }
 
-@if(@Model.JoinEntitiesStudentDepartments.Count == 0)
+@if(@Model.JoinEntitiesCourseDepartments.Count == 0)
 {
-  <p>This department does currently have any students.</p>
+  <p>This department does currently have anyt courses.</p>
 }
 else
 {
+<br>
   <h4>Courses in the @Html.DisplayFor(model => model.Name) department:</h4>
   <ul>
   @foreach(CourseDepartment join in Model.JoinEntitiesCourseDepartments)
   {
     <li>@join.Course.Title</li>
   }
+    <br>
+    <p>Number of students who have not yet completed courses in this department: </p>
   </ul>
+
+
 }
+<br>
+<br>
+<br>
+
 
 <p>@Html.ActionLink("Back to list", "Index")</p>
 <p>@Html.ActionLink("Add a Student", "AddStudent", new { id = Model.DepartmentId })</p>
