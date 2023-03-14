@@ -46,8 +46,10 @@ namespace UniversityRegistrar.Controllers
     public ActionResult AddStudent(int id)
     {
       Course thisCourse = _db.Courses.FirstOrDefault(courses => courses.CourseId == id);
+      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "Description");
       return View(thisCourse);
     }
+// ------------------------------------------------------------------
 
     [HttpPost]
     public ActionResult AddStudent(Course course, int studentId)
@@ -62,6 +64,7 @@ namespace UniversityRegistrar.Controllers
       }
       return RedirectToAction("Details", new { id = course.CourseId });
     }
+
     public ActionResult Edit(int id)
     {
       Course thisCourse = _db.Courses.FirstOrDefault(courses => courses.CourseId == id);
