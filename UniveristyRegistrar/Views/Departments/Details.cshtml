@@ -11,20 +11,30 @@
 
 @if(@Model.JoinEntitiesStudentDepartments.Count == 0)
 {
-  <p>This department does not belong to any student.</p>
+  <p>This department does currently have any students.</p>
 }
 else
 {
-  <h4>Students the department belongs to:</h4>
+  <h4>Students in the @Html.DisplayFor(model => model.Name) department:</h4>
   <ul>
   @foreach(StudentDepartment join in Model.JoinEntitiesStudentDepartments)
   {
     <li>@join.Student.Description</li>
-    @using (Html.BeginForm("DeleteJoin", "Departments"))
-    {
-      @Html.Hidden("joinId", @join.StudentDepartmentId)
-      <input type="submit" value="Delete"/>
-    }
+  }
+  </ul>
+}
+
+@if(@Model.JoinEntitiesStudentDepartments.Count == 0)
+{
+  <p>This department does currently have any students.</p>
+}
+else
+{
+  <h4>Courses in the @Html.DisplayFor(model => model.Name) department:</h4>
+  <ul>
+  @foreach(CourseDepartment join in Model.JoinEntitiesCourseDepartments)
+  {
+    <li>@join.Course.Title</li>
   }
   </ul>
 }

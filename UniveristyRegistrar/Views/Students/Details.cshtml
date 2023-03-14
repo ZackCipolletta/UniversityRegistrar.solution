@@ -28,7 +28,7 @@ else
   <ul>
     @foreach (StudentCourse join in Model.JoinEntitiesStudentCourses)
     {
-      <li>Courses: <br>@join.Course.Title | Completed: Yes/No</li>
+      <li>@join.Course.Title | Completed: Yes/No</li>
       @using (Html.BeginForm("DeleteJoin", "Students"))
       {
         @Html.Hidden("joinId", @join.StudentCourseId)
