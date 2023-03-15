@@ -30,7 +30,7 @@
     {
       <li>@join.Course.Title | 
         @using (Html.BeginForm("CourseCompletion", "Students")) {
-          @Html.Hidden("Id", @join.Student.StudentId)
+          @Html.Hidden("studentcourseId", @join.StudentCourseId)
           @Html.Label("Completed?")<span> </span>
         @Html.CheckBox("Completed")
       <input type="submit" value="Save"/>

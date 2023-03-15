@@ -135,13 +135,13 @@ namespace UniversityRegistrar.Controllers
 
 
     [HttpPost, ActionName("CourseCompletion")]
-    public ActionResult CourseCompletion(Boolean Completed, int Id)
+    public ActionResult CourseCompletion(Boolean Completed, int studentcourseId)
     {
-      StudentCourse thisStudentCourse = _db.StudentCourses.FirstOrDefault(join => join.StudentCourseId == Id);
+      StudentCourse thisStudentCourse = _db.StudentCourses.FirstOrDefault(join => join.StudentCourseId == studentcourseId);
       thisStudentCourse.Completed = Completed;
       _db.StudentCourses.Update(thisStudentCourse);
       _db.SaveChanges();
-      return RedirectToAction("Details", new {id = Id});
+      return RedirectToAction("Details", new {id = thisStudentCourse.StudentId});
     }
 
   }
